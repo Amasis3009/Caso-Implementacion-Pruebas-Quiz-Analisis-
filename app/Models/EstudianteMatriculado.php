@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EstudianteMatriculado extends Model
 {
-    protected $table = 'estudiante_matriculados';
+    protected $table = 'estudiantes_matriculados';
 
     protected $fillable = ['grupo_id', 'estudiante_id', 'nota'];
 

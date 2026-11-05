@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Estudiante extends Model
 {
-    protected $fillable = ['carne', 'nombre', 'apellidos', 'docente_id'];
+    use HasFactory;
+
+    protected $fillable = ['carne', 'nombre', 'apellidos', 'consejero_id'];
 
     public function consejero()
     {
-        return $this->belongsTo(Docente::class, 'docente_id');
+        return $this->belongsTo(Docente::class, 'consejero_id');
     }
 
     public function matriculas()
@@ -20,7 +23,7 @@ class Estudiante extends Model
 
     public function grupos()
     {
-        return $this->belongsToMany(Grupo::class, 'estudiante_matriculados', 'estudiante_id', 'grupo_id')
+        return $this->belongsToMany(Grupo::class, 'estudiantes_matriculados', 'estudiante_id', 'grupo_id')
             ->withPivot('nota')
             ->withTimestamps();
     }
